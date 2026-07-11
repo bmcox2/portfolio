@@ -4,519 +4,293 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Boston Cox | Portfolio</title>
-<meta
-name="description"
-content="Boston Cox - UIUC Computer Science student portfolio."
-/>
+<meta name="description" content="Boston Cox - UIUC Computer Science student portfolio." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
---bg: #0b1020;
---bg-soft: #121935;
---panel: rgba(18, 25, 53, 0.78);
---panel-2: rgba(255, 255, 255, 0.04);
---text: #f5f7ff;
---muted: #b8c0df;
---line: rgba(255, 255, 255, 0.1);
---accent: #7aa2ff;
---accent-2: #9a7cff;
---shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
---radius: 22px;
---max-width: 1100px;
+  --bg: #0c2340;
+  --bg-panel: #122d4d;
+  --grid-line: rgba(255,255,255,0.055);
+  --border: rgba(207,224,240,0.22);
+  --border-soft: rgba(207,224,240,0.12);
+  --ink: #eef3f8;
+  --muted: #93a9bd;
+  --accent: #6fe7dd;
+  --amber: #f2c14e;
+  --sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', monospace;
+  --max-width: 920px;
 }
-* {
-box-sizing: border-box;
-}
-html {
-scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-margin: 0;
-font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-"Segoe UI", sans-serif;
-color: var(--text);
-background:
-radial-gradient(circle at top left, rgba(122, 162, 255, 0.16), transparent 30%),
-radial-gradient(circle at top right, rgba(154, 124, 255, 0.14), transparent 28%),
-linear-gradient(180deg, #0a0f1f 0%, #0b1020 100%);
-min-height: 100vh;
-line-height: 1.6;
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  min-height: 100vh;
+  line-height: 1.6;
 }
-a {
-color: inherit;
-text-decoration: none;
+a { color: inherit; }
+.container { width: min(var(--max-width), calc(100% - 2.5rem)); margin: 0 auto; }
+
+/* corner-bracket motif used on every panel */
+.plate {
+  position: relative;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-soft);
+  padding: 1.6rem 1.8rem;
 }
-.container {
-width: min(var(--max-width), calc(100% - 2rem));
-margin: 0 auto;
+.plate::before, .plate::after,
+.plate .br-tr, .plate .br-bl {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--accent);
+  opacity: 0.85;
 }
-.site-header {
-position: sticky;
-top: 0;
-z-index: 100;
-backdrop-filter: blur(14px);
-background: rgba(11, 16, 32, 0.72);
-border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+.plate::before { top: -1px; left: -1px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.plate::after { bottom: -1px; right: -1px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+
+header.site-header {
+  border-bottom: 1px solid var(--border-soft);
+  background: rgba(12,35,64,0.85);
+  position: sticky; top: 0; z-index: 10;
 }
 .nav {
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 1rem;
-min-height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 62px; gap: 1rem; flex-wrap: wrap;
 }
-.brand {
-font-weight: 800;
-font-size: 1rem;
-letter-spacing: 0.02em;
-}
-.nav-links {
-display: flex;
-align-items: center;
-gap: 1.1rem;
-flex-wrap: wrap;
-}
-.nav-links a {
-color: var(--muted);
-font-size: 0.95rem;
-transition: color 0.2s ease;
-}
-.nav-links a:hover {
-color: var(--text);
-}
-.hero {
-padding: 5.5rem 0 2rem;
-}
-.hero-card {
-position: relative;
-overflow: hidden;
-background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-border: 1px solid var(--line);
-border-radius: calc(var(--radius) + 4px);
-box-shadow: var(--shadow);
-padding: 3rem;
-}
-.hero-card::before {
-content: "";
-position: absolute;
-inset: -30% auto auto -10%;
-width: 320px;
-height: 320px;
-background: radial-gradient(circle, rgba(122, 162, 255, 0.22), transparent 65%);
-pointer-events: none;
-}
-.eyebrow {
-display: inline-flex;
-align-items: center;
-gap: 0.5rem;
-padding: 0.4rem 0.8rem;
-border-radius: 999px;
-background: rgba(122, 162, 255, 0.12);
-border: 1px solid rgba(122, 162, 255, 0.22);
-color: #dbe6ff;
-font-size: 0.9rem;
-margin-bottom: 1.2rem;
+.brand { font-weight: 700; letter-spacing: 0.02em; }
+.nav-links { display: flex; gap: 1.4rem; flex-wrap: wrap; font-family: var(--mono); font-size: 0.82rem; }
+.nav-links a { color: var(--muted); text-decoration: none; margin-left: 1.4rem; }
+.nav-links a:first-child { margin-left: 0; }
+.nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
+
+.titleblock { padding: 4rem 0 2.5rem; }
+.titleblock .kicker {
+  font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.08em;
+  color: var(--accent); text-transform: uppercase; margin-bottom: 0.8rem;
 }
 h1 {
-margin: 0;
-font-size: clamp(2.6rem, 6vw, 5rem);
-line-height: 0.98;
-letter-spacing: -0.04em;
+  margin: 0; font-size: clamp(2.4rem, 6vw, 3.6rem);
+  letter-spacing: -0.02em; line-height: 1.05;
 }
-.subtitle {
-max-width: 700px;
-color: var(--muted);
-font-size: 1.12rem;
-margin: 1.2rem 0 0;
+.role-line {
+  font-family: var(--mono); color: var(--muted); font-size: 0.95rem;
+  margin-top: 0.9rem;
 }
-.hero-actions {
-display: flex;
-flex-wrap: wrap;
-gap: 0.9rem;
-margin-top: 1.8rem;
+.metaline {
+  font-family: var(--mono); font-size: 0.82rem; color: var(--muted);
+  margin-top: 1.6rem; padding-top: 1.2rem; border-top: 1px solid var(--border-soft);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 0;
 }
-.button {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-gap: 0.5rem;
-padding: 0.95rem 1.2rem;
-border-radius: 14px;
-font-weight: 700;
-border: 1px solid var(--line);
-transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+.metaline span { white-space: nowrap; }
+.metaline .sep { margin: 0 0.7rem; color: var(--border); }
+.metaline b { color: var(--ink); font-weight: 500; }
+.actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.8rem; }
+.btn {
+  font-family: var(--mono); font-size: 0.82rem; padding: 0.65rem 1rem;
+  border: 1px solid var(--border); text-decoration: none; display: inline-flex; align-items: center;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
-.button:hover {
-transform: translateY(-2px);
+.btn:hover, .btn:focus-visible { border-color: var(--accent); color: var(--accent); }
+.btn-solid { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+.btn-solid:hover, .btn-solid:focus-visible { color: var(--bg); opacity: 0.88; }
+
+main { padding-bottom: 4rem; }
+section { padding: 2.2rem 0 0; }
+.section-label {
+  font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  color: var(--muted); text-transform: uppercase; margin-bottom: 0.9rem;
 }
-.button-primary {
-background: linear-gradient(135deg, var(--accent), var(--accent-2));
-color: white;
-border: none;
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+p.body-text { color: var(--muted); margin: 0; font-size: 0.98rem; }
+
+.skills-line {
+  font-family: var(--mono); font-size: 0.9rem; line-height: 2.1;
+  color: var(--ink);
 }
-.button-secondary {
-background: rgba(255, 255, 255, 0.03);
-color: var(--text);
+.skills-line .slash { color: var(--border); margin: 0 0.55rem; }
+
+/* build log: the signature element */
+.log-entry { margin-bottom: 1.4rem; }
+.log-entry:last-child { margin-bottom: 0; }
+.log-head {
+  display: flex; align-items: baseline; gap: 0.7rem; flex-wrap: wrap;
+  font-family: var(--mono); font-size: 0.85rem; margin-bottom: 0.5rem;
 }
-.hero-meta {
-display: grid;
-grid-template-columns: repeat(3, minmax(0, 1fr));
-gap: 1rem;
-margin-top: 2rem;
+.log-ver { color: var(--accent); font-weight: 600; }
+.log-status-done { color: var(--accent); }
+.log-status-wip { color: var(--amber); }
+.log-desc { color: var(--muted); font-size: 0.88rem; margin: 0 0 0.15rem 1.9rem; }
+.project-title { font-size: 1.25rem; margin: 0 0 0.3rem; }
+.project-intro { color: var(--muted); margin: 0 0 1.1rem; font-size: 0.95rem; }
+.project-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-soft);
+  flex-wrap: wrap; gap: 0.6rem;
 }
-.meta-card {
-background: var(--panel-2);
-border: 1px solid var(--line);
-border-radius: 18px;
-padding: 1rem 1.1rem;
-}
-.meta-label {
-color: var(--muted);
-font-size: 0.9rem;
-margin-bottom: 0.2rem;
-}
-.meta-value {
-font-weight: 700;
-font-size: 1rem;
-}
-main {
-padding-bottom: 4rem;
-}
-section {
-padding: 1rem 0 0;
-}
-.section-title {
-font-size: 1.4rem;
-margin: 0 0 1rem;
-letter-spacing: -0.02em;
-}
-.panel {
-background: var(--panel);
-border: 1px solid var(--line);
-border-radius: var(--radius);
-box-shadow: var(--shadow);
-padding: 1.5rem;
-}
-.about-text,
-.contact-text,
-.project-text {
-color: var(--muted);
-font-size: 1rem;
-margin: 0;
-}
-.grid {
-display: grid;
-gap: 1rem;
-}
-.two-col {
-grid-template-columns: 1.2fr 0.8fr;
-align-items: start;
-}
-.skills-wrap {
-display: flex;
-flex-wrap: wrap;
-gap: 0.8rem;
-}
-.skill {
-padding: 0.7rem 0.95rem;
-border-radius: 999px;
-border: 1px solid var(--line);
-background: rgba(255, 255, 255, 0.035);
-color: #e7ecff;
-font-weight: 600;
-font-size: 0.95rem;
-}
-.projects-grid {
-display: grid;
-gap: 1rem;
-grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.project-card {
-border: 1px solid var(--line);
-background: rgba(255, 255, 255, 0.03);
-border-radius: 18px;
-padding: 1.4rem;
-min-height: 220px;
-display: flex;
-flex-direction: column;
-justify-content: space-between;
-}
-.project-card h3 {
-margin: 0 0 0.6rem;
-font-size: 1.1rem;
-}
-.project-card p {
-margin: 0 0 0.7rem;
-color: var(--muted);
-}
-.project-card ul {
-margin: 0 0 0.8rem;
-padding-left: 1.1rem;
-color: var(--muted);
-font-size: 0.92rem;
-}
-.project-card li {
-margin-bottom: 0.3rem;
-}
-.project-tags {
-display: flex;
-flex-wrap: wrap;
-gap: 0.4rem;
-margin-top: 0.6rem;
-}
-.project-tag {
-display: inline-block;
-font-size: 0.78rem;
-color: #d9e3ff;
-background: rgba(122, 162, 255, 0.12);
-border: 1px solid rgba(122, 162, 255, 0.22);
-padding: 0.3rem 0.6rem;
-border-radius: 999px;
-width: fit-content;
-}
+.tag-line { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
 .project-link {
-display: inline-flex;
-align-items: center;
-gap: 0.4rem;
-margin-top: 1rem;
-font-weight: 700;
-color: var(--accent);
-font-size: 0.92rem;
+  font-family: var(--mono); font-size: 0.82rem; color: var(--accent); text-decoration: none;
 }
-.project-link:hover {
-color: var(--text);
-}
-.contact-links {
-display: flex;
-flex-wrap: wrap;
-gap: 0.8rem;
-margin-top: 1rem;
-}
-.contact-chip {
-padding: 0.8rem 1rem;
-border-radius: 14px;
-background: rgba(255,255,255,0.035);
-border: 1px solid var(--line);
-font-weight: 600;
-color: #e9eeff;
-}
+.project-link:hover, .project-link:focus-visible { text-decoration: underline; }
+.projects-stack { display: flex; flex-direction: column; gap: 1rem; }
+
+.contact-line { font-family: var(--mono); font-size: 0.92rem; }
+.contact-line a { color: var(--accent); text-decoration: none; }
+.contact-line a:hover, .contact-line a:focus-visible { text-decoration: underline; }
+.contact-row { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; }
+
 .footer {
-padding: 2rem 0 3rem;
-color: var(--muted);
-font-size: 0.92rem;
-text-align: center;
+  border-top: 1px solid var(--border-soft);
+  margin-top: 3rem; padding: 1.4rem 0;
+  font-family: var(--mono); font-size: 0.78rem; color: var(--muted);
+  text-align: center;
 }
-@media (max-width: 900px) {
-.two-col,
-.projects-grid,
-.hero-meta {
-grid-template-columns: 1fr;
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 720px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .project-footer { flex-direction: column; align-items: flex-start; }
 }
-.hero-card {
-padding: 2rem;
-}
-}
-@media (max-width: 640px) {
-.nav {
-min-height: auto;
-padding: 0.9rem 0;
-align-items: flex-start;
-flex-direction: column;
-}
-.hero {
-padding-top: 4rem;
-}
-.hero-card {
-padding: 1.4rem;
-}
-.subtitle {
-font-size: 1rem;
-}
-.button {
-width: 100%;
-}
-.hero-actions {
-flex-direction: column;
-}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 </style>
 </head>
 <body>
+
 <header class="site-header">
-<div class="container nav">
-<div class="brand">Boston Cox</div>
-<nav class="nav-links">
-<a href="#about">About</a>
-<a href="#skills">Skills</a>
-<a href="#projects">Projects</a>
-<a href="#contact">Contact</a>
-<a href="./Boston_Cox_Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-</nav>
-</div>
+  <div class="container nav">
+    <div class="brand">BOSTON COX</div>
+    <nav class="nav-links">
+      <a href="#about">ABOUT</a>
+      <a href="#skills">SKILLS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#contact">CONTACT</a>
+      <a href="./Boston_Cox_Resume.pdf" target="_blank" rel="noopener noreferrer">RESUME</a>
+    </nav>
+  </div>
 </header>
 
 <main>
-<section class="hero">
-<div class="container">
-<div class="hero-card">
-<div class="eyebrow">UIUC Computer Science Student</div>
-<h1>Building practical software with strong fundamentals.</h1>
-<p class="subtitle">
-I'm Boston Cox, a CS student at UIUC focused on learning deeply,
-writing solid code, and building projects that sharpen real software skills.
-</p>
-<div class="hero-actions">
-<a class="button button-primary" href="./Boston_Cox_Resume.pdf" target="_blank" rel="noopener noreferrer">
-View Resume
-</a>
-<a class="button button-secondary" href="https://github.com/bmcox2" target="_blank" rel="noopener noreferrer">
-GitHub
-</a>
-<a class="button button-secondary" href="https://www.linkedin.com/in/boston-cox-815712285/" target="_blank" rel="noopener noreferrer">
-LinkedIn
-</a>
-</div>
-<div class="hero-meta">
-<div class="meta-card">
-<div class="meta-label">Focus</div>
-<div class="meta-value">Software + fundamentals</div>
-</div>
-<div class="meta-card">
-<div class="meta-label">School</div>
-<div class="meta-value">University of Illinois</div>
-</div>
-<div class="meta-card">
-<div class="meta-label">Currently</div>
-<div class="meta-value">Building an iOS app in React Native</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+  <section class="titleblock">
+    <div class="container">
+      <div class="kicker">// portfolio — rev 2026.07</div>
+      <h1>Boston Cox</h1>
+      <div class="role-line">Computer Science, University of Illinois Urbana-Champaign — Grainger College of Engineering</div>
+      <div class="metaline">
+        <span>SCHOOL <b>UIUC</b></span>
+        <span class="sep">/</span>
+        <span>STATUS <b>building</b></span>
+        <span class="sep">/</span>
+        <span>FOCUS <b>full-stack + systems</b></span>
+      </div>
+      <div class="actions">
+        <a class="btn btn-solid" href="./Boston_Cox_Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
+        <a class="btn" href="https://github.com/bmcox2" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/boston-cox-815712285/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </div>
+  </section>
 
-<section id="about">
-<div class="container grid two-col">
-<div class="panel">
-<h2 class="section-title">About Me</h2>
-<p class="about-text">
-I'm a computer science student at UIUC, transferred in through the Parkland
-Pathway program, interested in building useful software and strengthening the
-core skills behind it. Right now I'm independently building a full-stack
-iOS fitness app to learn mobile development end to end.
-</p>
-</div>
-<div class="panel">
-<h2 class="section-title">Current Focus</h2>
-<p class="about-text">
-Systems Programming and Database Systems this fall, and extending the
-Exercise Logger below with a full workout-building interface.
-</p>
-</div>
-</div>
-</section>
+  <section id="about">
+    <div class="container grid-2">
+      <div class="plate">
+        <div class="section-label">About</div>
+        <p class="body-text">
+          CS student at UIUC, transferred in through the Parkland Pathway program.
+          Independently building a full-stack iOS fitness app to learn mobile
+          development end to end, not just to produce working code.
+        </p>
+      </div>
+      <div class="plate">
+        <div class="section-label">Current Focus</div>
+        <p class="body-text">
+          Systems Programming and Database Systems this fall. Extending the
+          Exercise Logger below with a full workout-building interface.
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section id="skills">
-<div class="container">
-<div class="panel">
-<h2 class="section-title">Skills</h2>
-<div class="skills-wrap">
-<span class="skill">Java</span>
-<span class="skill">C++</span>
-<span class="skill">JavaScript / TypeScript</span>
-<span class="skill">SQL</span>
-<span class="skill">React Native</span>
-<span class="skill">SQLite</span>
-<span class="skill">Git / GitHub</span>
-<span class="skill">Kotlin</span>
-<span class="skill">MIPS Assembly</span>
-</div>
-</div>
-</div>
-</section>
+  <section id="skills">
+    <div class="container">
+      <div class="plate">
+        <div class="section-label">Skills</div>
+        <div class="skills-line">
+          JAVA<span class="slash">/</span>C++<span class="slash">/</span>TYPESCRIPT<span class="slash">/</span>SQL<span class="slash">/</span>REACT&nbsp;NATIVE<span class="slash">/</span>SQLITE<span class="slash">/</span>KOTLIN<span class="slash">/</span>MIPS&nbsp;ASM<span class="slash">/</span>GIT
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section id="projects">
-<div class="container">
-<div class="panel">
-<h2 class="section-title">Projects</h2>
-<div class="projects-grid">
-<article class="project-card">
-<div>
-<h3>Exercise Logger: Mobile Fitness Tracker</h3>
-<p>
-A full-stack iOS fitness app I'm building independently, from the UI
-down through the database.
-</p>
-<ul>
-<li>Normalized relational schema in SQLite with foreign-key relationships and junction tables for muscle-group data</li>
-<li>Searchable library of 873 exercises, built with React Navigation and tab-based routing</li>
-<li>Found and fixed a real startup race condition between database init and UI rendering</li>
-</ul>
-<div class="project-tags">
-<span class="project-tag">React Native</span>
-<span class="project-tag">TypeScript</span>
-<span class="project-tag">SQLite</span>
-</div>
-</div>
-<a class="project-link" href="https://github.com/bmcox2/exercise-logger-mobile" target="_blank" rel="noopener noreferrer">
-View on GitHub &rarr;
-</a>
-</article>
-<article class="project-card">
-<div>
-<h3>Command-Line Workout Logger</h3>
-<p>
-A terminal-based fitness tracker in C++, the foundational version that
-preceded the mobile rebuild above.
-</p>
-<ul>
-<li>Custom Workout and Exercise classes with clean separation of concerns</li>
-<li>File I/O and JSON serialization for data persistence</li>
-</ul>
-<div class="project-tags">
-<span class="project-tag">C++</span>
-</div>
-</div>
-</article>
-</div>
-</div>
-</div>
-</section>
+  <section id="projects">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 0.6rem;">Projects — Build Log</div>
+      <div class="projects-stack">
 
-<section id="contact">
-<div class="container grid two-col">
-<div class="panel">
-<h2 class="section-title">Contact</h2>
-<p class="contact-text">
-The best way to reach me is by email or LinkedIn.
-</p>
-<div class="contact-links">
-<a class="contact-chip" href="mailto:bmcox2@illinois.edu">bmcox2@illinois.edu</a>
-<a class="contact-chip" href="https://www.linkedin.com/in/boston-cox-815712285/" target="_blank" rel="noopener noreferrer">
-LinkedIn
-</a>
-<a class="contact-chip" href="https://github.com/bmcox2" target="_blank" rel="noopener noreferrer">
-GitHub
-</a>
-</div>
-</div>
-<div class="panel">
-<h2 class="section-title">Resume</h2>
-<p class="contact-text">
-View my current resume here.
-</p>
-<div class="hero-actions" style="margin-top: 1rem;">
-<a class="button button-primary" href="./Boston_Cox_Resume.pdf" target="_blank" rel="noopener noreferrer">
-Open Resume PDF
-</a>
-</div>
-</div>
-</div>
-</section>
+        <div class="plate">
+          <h3 class="project-title">Exercise Logger: Mobile Fitness Tracker</h3>
+          <p class="project-intro">A full-stack iOS fitness app, built independently from the UI down through the database.</p>
+
+          <div class="log-entry">
+            <div class="log-head"><span class="log-ver">V1–V2</span><span class="log-status-done">✓ complete</span></div>
+            <div class="log-desc">Terminal logger in C++ — core data models, exercise database, edit/delete, stats</div>
+          </div>
+          <div class="log-entry">
+            <div class="log-head"><span class="log-ver">V3</span><span class="log-status-done">✓ complete</span></div>
+            <div class="log-desc">Mobile rebuild — workout list &amp; detail screens, SQLite persistence, normalized schema</div>
+          </div>
+          <div class="log-entry">
+            <div class="log-head"><span class="log-ver">V4</span><span class="log-status-wip">◐ in progress</span></div>
+            <div class="log-desc">Sets-level schema, searchable 873-exercise library, workout-building interface</div>
+          </div>
+
+          <div class="project-footer">
+            <div class="tag-line">REACT NATIVE · TYPESCRIPT · EXPO · SQLITE</div>
+            <a class="project-link" href="https://github.com/bmcox2/exercise-logger-mobile" target="_blank" rel="noopener noreferrer">github.com/bmcox2/exercise-logger-mobile &rarr;</a>
+          </div>
+        </div>
+
+        <div class="plate">
+          <h3 class="project-title">Command-Line Workout Logger</h3>
+          <p class="project-intro">Terminal-based fitness tracker in C++ — the foundational version that preceded the mobile rebuild above. Custom Workout and Exercise classes, file I/O, and JSON serialization for persistence.</p>
+          <div class="project-footer">
+            <div class="tag-line">C++</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="plate">
+        <div class="section-label">Contact</div>
+        <div class="contact-row">
+          <div class="contact-line">EMAIL &nbsp; <a href="mailto:bmcox2@illinois.edu">bmcox2@illinois.edu</a></div>
+          <div class="contact-line">LINKEDIN &nbsp; <a href="https://www.linkedin.com/in/boston-cox-815712285/" target="_blank" rel="noopener noreferrer">/in/boston-cox-815712285</a></div>
+          <div class="contact-line">GITHUB &nbsp; <a href="https://github.com/bmcox2" target="_blank" rel="noopener noreferrer">/bmcox2</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
-<div class="container">
-© 2026 Boston Cox
-</div>
+  <div class="container">© 2026 Boston Cox</div>
 </footer>
+
 </body>
 </html>
